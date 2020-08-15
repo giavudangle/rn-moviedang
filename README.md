@@ -10,9 +10,9 @@ Redux is a predictable state container for JavaScript apps.
 [![redux channel on discord](https://img.shields.io/badge/discord-%23redux%20%40%20reactiflux-61dafb.svg?style=flat-square)](https://discord.gg/0ZcbPKXt5bZ6au5t)
 [![Changelog #187](https://img.shields.io/badge/changelog-%23187-lightgrey.svg?style=flat-square)](https://changelog.com/187)
 
+  ## Created by Vudang
   
-  
-  
+
   ## Redux Flow Architecture
   - 1.Khi View Layer bắn 1 Event - Event được chuyển đến Action
   - 2.Ứng với mỗi Action - thì nó sẽ dispatch function đó tới Reducers

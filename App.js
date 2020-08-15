@@ -1,21 +1,15 @@
 import React from 'react';
 import HomeScreen from './src/screens/HomeScreen'
-import {createStore} from 'redux'
+import {applyMiddleware, createStore} from 'redux'
 import {Provider} from 'react-redux'
-import mockMoviesData from './src/mockMoviesData.json'
+import thunk from 'redux-thunk'
+import rootReducer from './src/reducers/rootReducer';
+
+const store = createStore(rootReducer,applyMiddleware(thunk));
 
 
+export default () => { 
 
-function moviesReducer(state = mockMoviesData.results ,action){
-  console.log(state);
-  return state;
-}
-
-
-
-const store = createStore(moviesReducer);
-
-export default () => {
   return(
     <Provider store={store}>
       <HomeScreen/>

@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   View,
   Text,
   Image,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const {width,height} = Dimensions.get('screen');
 
+
+
+
 export default MovieRender = ({movie}) => {
+  const[click,setClick] = useState(false);
+  
+  
   return(
     <View style={styles.container}>
        
@@ -22,7 +29,9 @@ export default MovieRender = ({movie}) => {
           <Text  style={styles.title}>{movie.title}</Text>
         </View>  
         <View style={styles.iconContainer}>
-          <Icon name='heart' size={28} color='gray'/>  
+        
+            <Icon onPress={() => setClick(true)} name='heart' size={28} color={click ? 'red':'gray'}/>  
+        
         </View>
         
     </View>
