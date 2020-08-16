@@ -6,7 +6,7 @@ import {
   Image,
   StyleSheet,
   Dimensions,
-  TouchableOpacity
+  TouchableWithoutFeedback,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -15,26 +15,30 @@ const {width,height} = Dimensions.get('screen');
 
 
 
-export default MovieRender = ({movie}) => {
-  const[click,setClick] = useState(false);
-  
-  
+export default MovieRender = ({movie,navigation}) => {
+  const[color,setColor] = useState('gray');
   return(
+    <TouchableWithoutFeedback
+     onPress={() => navigation.navigate('DetailMovie')}
+    >
     <View style={styles.container}>
-       
         <View style={styles.imageContainer}>
           <Image style={styles.poster} source={{uri:`https://image.tmdb.org/t/p/original` + `${movie.poster_path}`}}/>
         </View>
         <View style={styles.titleContainer}>
           <Text  style={styles.title}>{movie.title}</Text>
         </View>  
-        <View style={styles.iconContainer}>
-        
-            <Icon onPress={() => setClick(true)} name='heart' size={28} color={click ? 'red':'gray'}/>  
-        
-        </View>
-        
+        <View  style={styles.iconContainer}>
+        <TouchableWithoutFeedback 
+          onPressIn={() => setColor('red')}
+          onLongPress={() => setColor('gray')}
+        >
+        <Icon name='heart' size={28} color={color}/>    
+        </TouchableWithoutFeedback>
+           
+        </View>    
     </View>
+    </TouchableWithoutFeedback>
   )
 }
 

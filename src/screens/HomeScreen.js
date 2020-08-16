@@ -11,12 +11,18 @@ import { connect } from 'react-redux'
 import {fetchList} from '../actions/movieActions'
 
 class HomeScreen extends React.Component {
+
+  constructor(props){
+   super(props)
+  }
+
   componentDidMount(){
     this.props.fetchListMovies();
   }
  
   render() {
     const { movies } = this.props;
+    const navigation=this.props.navigation;
     return (
       <View style={styles.container}>
         <SafeAreaView>
@@ -25,7 +31,7 @@ class HomeScreen extends React.Component {
             horizontal={false}
             showsHorizontalScrollIndicator={false}
             data={movies}
-            renderItem={({ item }) => <MovieRender movie={item} />}
+            renderItem={({ item }) => <MovieRender navigation={navigation}  movie={item} />}
             keyExtractor={(item) => item.id.toString()}
             showsVerticalScrollIndicator={false}
           />
