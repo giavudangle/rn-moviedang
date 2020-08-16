@@ -1,3 +1,4 @@
+import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import HomeScreen from './src/screens/HomeScreen'
 import {applyMiddleware, createStore} from 'redux'
@@ -16,3 +17,4 @@ export default () => {
     </Provider>
   )
 }
+
