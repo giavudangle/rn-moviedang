@@ -2,13 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import {
   StyleSheet, Text, View, Image, FlatList,
-  SafeAreaView,Button
+  SafeAreaView,Button,Dimensions
 } from 'react-native';
 
 import MovieRender from '../components/MovieRender'
 import { connect } from 'react-redux'
 
 import {fetchList} from '../actions/movieActions'
+const {width,height} = Dimensions.get('screen');
 
 class HomeScreen extends React.Component {
 
@@ -26,7 +27,7 @@ class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <SafeAreaView>
-          <Text style={{ fontSize: 23, textAlign: "center", paddingTop: 20, paddingBottom: 20, fontWeight: "bold", color: '#0693ee' }}>LIST MOVIES</Text>
+          <Image style={{marginBottom:10,width:width/2,height:height/16,overflow:"hidden",alignSelf:'center'}} source={require('../utils/logo.png')}/>
           <FlatList
             horizontal={false}
             showsHorizontalScrollIndicator={false}

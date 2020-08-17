@@ -19,7 +19,7 @@ export default MovieRender = ({movie,navigation}) => {
   const[color,setColor] = useState('gray');
   return(
     <TouchableWithoutFeedback
-     onPress={() => navigation.navigate('DetailMovie')}
+     onPress={() => navigation.navigate('DetailMovie',movie)}
     >
     <View style={styles.container}>
         <View style={styles.imageContainer}>
