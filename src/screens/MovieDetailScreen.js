@@ -1,6 +1,6 @@
-import React,{useLayoutEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 
-import { View, Text,Image,StyleSheet,Dimensions, ScrollView ,SafeAreaView} from 'react-native';
+import { View, Text,Image,StyleSheet,Dimensions, ScrollView ,SafeAreaView, Linking} from 'react-native';
 
 import {Button} from 'react-native-paper'
 
@@ -10,14 +10,32 @@ import Ant from 'react-native-vector-icons/AntDesign'
 
 
 export default MovieDetailScreen = (props) => {
+  const [key,setKey] = useState([]);
   const navigation = props.navigation;
   const movie = props.route.params;
-  console.log(movie)
 
 
-  const wp =() =>{
-    return (<WebView source={{ uri: 'https://reactnative.dev/' }}></WebView>)
+  const getYoutubeKey = (movieId) => {
+    fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=69938bebfb176098af2131f041f0f817&language=en-US`)
+    .then((res) => res.json())
+    .then((json) => setKey(json.results))
+  
   }
+
+  useEffect(() => {
+    const sub = getYoutubeKey(movie.id);
+    return sub;
+  },)
+   const findTrailer = () => {
+    return key.find((e) => e.type === 'Trailer')
+   }
+
+   const _openTrailer = () => {
+     const utubeLink = findTrailer().key;
+     
+     return Linking.openURL(`https://youtu.be/${utubeLink}-w`);     
+   }
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -34,7 +52,10 @@ export default MovieDetailScreen = (props) => {
         <Text style={{paddingTop:25,fontSize:30,color:'white',fontWeight:'bold'}}>Summary</Text>
         <Text style={{paddingTop:10,color:'white',fontSize:15}}>{movie.overview}</Text>
         <Button style={{shadowColor:'white',width:width/2,alignSelf:'center',marginTop:30,backgroundColor:'#2e2e2e'}} 
-        icon='play' mode='contained' onPress={() =>  {}}
+        icon='play' mode='contained' 
+        onPress={() =>  
+            _openTrailer()
+          }
         >Trailer</Button>
         </View>
         
