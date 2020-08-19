@@ -2,7 +2,7 @@
   "main": "index.js",
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios --simulator='iPhone XR' ",
+    "ios": "react-native run-ios --simulator='iPhone X' ",
     "web": "expo start --web",
     "start": "react-native start",
     "test": "jest"

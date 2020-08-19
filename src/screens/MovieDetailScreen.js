@@ -23,9 +23,8 @@ export default MovieDetailScreen = (props) => {
   }
 
   useEffect(() => {
-    const sub = getYoutubeKey(movie.id);
-    return sub;
-  },)
+    getYoutubeKey(movie.id)
+  },[])
    const findTrailer = () => {
     return key.find((e) => e.type === 'Trailer')
    }
