@@ -6,12 +6,6 @@ import MainNavigation from './src/navigation/MainNavigation';
 
 
 
-
-
-
-
-
-
 export default () => { 
   return(
     <Provider store={store}>
