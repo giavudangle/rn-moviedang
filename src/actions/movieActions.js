@@ -2,7 +2,6 @@
 import Types from './actionTypes';
 
 export const fetchList = (page) => {
-  console.log(page)
   const urlString =`https://api.themoviedb.org/3/movie/now_playing?api_key=69938bebfb176098af2131f041f0f817&language=en-US&page=${page}`;
   return (dispatch) => {
     dispatch({type:Types.FETCH_LIST_MOVIES_REQUEST})

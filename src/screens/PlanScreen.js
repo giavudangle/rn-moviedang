@@ -3,37 +3,22 @@ import { View, Text ,ScrollView,TouchableOpacity} from 'react-native'
 import {Calendar,CalendarList,Agenda} from 'react-native-calendars'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { material } from 'react-native-typography'
+import { Avatar, Card } from 'react-native-paper'
+import Ant from 'react-native-vector-icons/AntDesign';
 
-import { Avatar, Card, Title } from 'react-native-paper'
-const current = new Date().toDateString();
-export default function  PlanScreen() {
-  const [items,setItems] = useState({});
 
-  const timeToString = (time) => {
-    const date = new Date(time);
-    return date.toISOString().split('T')[0];
-  }
+export default function  PlanScreen({navigation}) {
 
-  const loadItems = (day) => {
-    setTimeout(() => {
-      for (let i = -15; i < 85; i++) {
-        const time = day.timestamp + i * 24 * 60 * 60 * 1000;
-        const strTime = timeToString(time);
-        if (!items[strTime]) {
-          items[strTime] = [];
-          const numItems = Math.floor(Math.random() * 3 + 1);
-          for (let j = 0; j < numItems; j++) {
-              items[strTime].push({
-              name: 'Item for ' + strTime + ' #' + j,
-              height: Math.max(50, Math.floor(Math.random() * 150))
-            });
-          }
-        }
-      }
-      const newItems = {};
-      Object.keys(items).forEach(key => {newItems[key] =items[key];});
-      setItems(newItems)
-    }, 1000);
+  const [items,setItems] = useState({})
+
+  const randomName = () => {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < charactersLength; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result[0];  
   }
 
   const renderItem = (item) => {
@@ -43,7 +28,7 @@ export default function  PlanScreen() {
           <Card.Content>
             <View style={{justifyContent:'space-between',alignItems:'center',flexDirection:'row'}}>
               <Text style={[material.subheading]} >{item.name}</Text>
-              <Avatar.Text label='V'/>
+              <Avatar.Text label={randomName()}/>
             </View>
           </Card.Content>
         </Card>
@@ -51,18 +36,38 @@ export default function  PlanScreen() {
     )
   }
 
+  const mock ={
+    '2020-08-18': [{name: 'item 1 - any js object',height:0}],
+    '2020-08-17': [{name: 'item 2 - any js object', height: 80}],
+    '2020-08-21': [{name: 'item 2 - any js object', height: 80}],
+    '2020-08-22': [{name: 'item 3 - any js object'}, {name: 'any js object'},{name: 'any js object'}]
+  }
+ 
+  const mockLoading = (item) => {
+      const newItems = {};
+      Object.keys(mock).forEach(key => {newItems[key] =mock[key];});
+      console.log(newItems)
+      setItems(newItems)
+  }
+
+  const _handleAddPlan = () =>{
+    navigation.navigate('AddPlan')
+  }
+
   return (
-    <ScrollView>
     <SafeAreaView>
+    <ScrollView>
+    <Ant onPress={_handleAddPlan} style={{alignSelf:'flex-end',paddingHorizontal:10,paddingVertical:10}} 
+    name='pluscircleo' color='#34aeeb' size={30}/>
       <Agenda   
       items={items}
-      loadItemsForMonth={loadItems}
-      selected={'2020-05-16'}      
+      loadItemsForMonth={mockLoading}
+      selected={'2020-08-22'}      
       renderItem={renderItem}
       />
-    </SafeAreaView>
    
     </ScrollView>
+    </SafeAreaView>
   )
 }
 
