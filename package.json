@@ -8,6 +8,7 @@
     "test": "jest"
   },
   "dependencies": {
+    
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "^5.8.0",
     "@react-navigation/native": "^5.7.3",

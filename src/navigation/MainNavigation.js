@@ -17,10 +17,14 @@ import ProfileScreen from '../screens/ProfileScreen'
 
 import Ant from 'react-native-vector-icons/AntDesign'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import AddPlanScreen from '../screens/AddPlanScreen';
 
 
 
 const HomeStack = createStackNavigator();
+const PlanStack = createStackNavigator();
+
+
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
@@ -35,19 +39,19 @@ const TabNavigator = () => {
           tabBarIcon: () => (
             <Ant style={{ paddingTop: 10 }} size={25} color='#2e2e2e' name='home' />
           ),
-          tabBarBadge: 99,
+          tabBarBadge: 3,
           tabBarLabel: '',
 
         }}
       />
       <Tab.Screen
         name='Plan'
-        component={PlanScreen}
+        component={PlanStackNavigator}
         options={{
           tabBarIcon: () => (
             <Ant style={{ paddingTop: 10 }} size={25} color='#2e2e2e' name='calendar' />
           ),
-          tabBarBadge: 99,
+      
           tabBarLabel: '',
 
         }}
@@ -59,7 +63,7 @@ const TabNavigator = () => {
           tabBarIcon: () => (
             <Ant style={{ paddingTop: 10 }} size={25} color='#2e2e2e' name='search1' />
           ),
-          tabBarBadge: 99,
+       
           tabBarLabel: '',
 
         }}
@@ -71,7 +75,7 @@ const TabNavigator = () => {
           tabBarIcon: () => (
             <Icon style={{ paddingTop: 10 }} size={25} color='#2e2e2e' name='theater' />
           ),
-          tabBarBadge: 99,
+       
           tabBarLabel: '',
 
         }}
@@ -83,7 +87,7 @@ const TabNavigator = () => {
           tabBarIcon: () => (
             <Ant style={{ paddingTop: 10 }} size={25} color='#2e2e2e' name='user' />
           ),
-          tabBarBadge: 99,
+     
           tabBarLabel: '',
 
         }}
@@ -94,7 +98,14 @@ const TabNavigator = () => {
   )
 }
 
-
+const PlanStackNavigator = () => {
+  return(
+    <PlanStack.Navigator mode='modal'>
+      <PlanStack.Screen options={{headerShown:false}} name='PlanHome' component={PlanScreen}/>
+      <PlanStack.Screen options={{headerShown:false}} name='AddPlan' component={AddPlanScreen}/>
+    </PlanStack.Navigator>
+  )
+}
 
 
 const HomeStackNavigator = () => {
