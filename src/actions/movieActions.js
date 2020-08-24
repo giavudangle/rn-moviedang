@@ -34,7 +34,8 @@ export const searchMovieWithName = (query) => {
       .then(res => res.json())
       .then(json=> {return json.results})
       .then((data) => dispatch({type:Types.SEARCH_MOVIE_WITH_NAME_SUCCESS,payload:data}))
-      
     )
   }
 }
+
+

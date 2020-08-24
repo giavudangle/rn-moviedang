@@ -6,12 +6,14 @@ import Ant from 'react-native-vector-icons/AntDesign';
 
 const {width,height} = Dimensions.get('screen');
 
-export default function TextInputCustom({place,name,onChangeTextHandle,onTouchHandle}) {
+export default function TextInputCustom({valueRef,place,name,onChangeTextHandle,onTouchHandle,onTouchEndHandle}) {
   return (
     <View style={styles.container}>
       <View style={styles.textInputContainer}>
       <Icon style={{}} name={name} size={25}/>
       <TextInput 
+        value={valueRef }
+        onBlur={onTouchEndHandle}
         onChangeText={onChangeTextHandle}
         onTouchStart={onTouchHandle}
         mode='outlined'

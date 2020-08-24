@@ -8,10 +8,11 @@ import { searchMovieWithName } from '../actions/movieActions'
 import MovieRender from '../components/MovieRender';
 import Loading from '../components/common/Loading'
 import { ScrollView } from 'react-native-gesture-handler'
+import MoviePickerRendering from '../components/MoviePickerRendering'
 
 const {width,height } = Dimensions.get('screen');
 
-export default function SearchMoviesScreen({navigation}) {
+export default function PickingMovieScreen({navigation}) {
   const movieSearch = useSelector(state => state.moviesReducer.searchMovies)
   const loading = useSelector(state => state.moviesReducer.loading)
 
@@ -29,6 +30,9 @@ export default function SearchMoviesScreen({navigation}) {
 
   if(loading) return <Loading/>
 
+
+
+  
 
   return (
     <SafeAreaView style={styles.container}>
@@ -53,7 +57,7 @@ export default function SearchMoviesScreen({navigation}) {
             horizontal={false}
             showsHorizontalScrollIndicator={false}
             data={movieSearch}
-            renderItem={({ item }) => <MovieRender navigation={navigation}  movie={item} />}
+            renderItem={({ item }) => <MoviePickerRendering navigation={navigation}  movie={item} />}
             keyExtractor={(item) => item.id.toString()}
             showsVerticalScrollIndicator={false}
             ListFooterComponent={() => _handleLoading()}
