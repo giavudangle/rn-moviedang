@@ -3,12 +3,12 @@ import { View, Text, Dimensions, TouchableOpacity,Image,StyleSheet } from 'react
 import { FlatList } from 'react-native-gesture-handler'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import mockTheaterData from '../utils/mockTheaterData.json'
-
+import MapTheaterScreen from './MapTheaterScreen'
 
 const { width, height } = Dimensions.get('screen');
  
 const _handlePressDetail = () => {
-  
+
 }
 
 
@@ -32,14 +32,17 @@ const TheaterDetail = ({ item }) => {
 
 export default function CinemaScreen({navigation}) {
   return (
+ 
     <SafeAreaView style={{ backgroundColor: '#193561' ,opacity:0.9}}>
       <Text style={{ fontSize: 30, fontWeight: "bold", alignSelf: "center", color: 'white' }}>THEATER</Text>
       <FlatList
         data={mockTheaterData.cinemas}
         renderItem={({ item }) => <TheaterDetail item={item} />}
         style={{alignSelf:'center'}}
-      />
+      /> 
+    
     </SafeAreaView>
+   
   )
 }
 
