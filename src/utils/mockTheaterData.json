@@ -1,0 +1,75 @@
+{
+  "cinemas": [
+    {
+      "cinema_id": 8795,
+      "cinema_name": "ODEON Leicester Square",
+      "address": "24-26 Leicester Square",
+      "city": "London",
+      "county": "Greater London",
+      "postcode": "WC2H 7JY",
+      "lat": 51.510479,
+      "lng": -0.12952,
+      "distance": 0.026927763381187,
+      "logo_url": "https://d2z9fe5yu2p0av.cloudfront.net/chainlogos/uk/UK-614-sq.jpg"
+    },
+    {
+      "cinema_id": 8893,
+      "cinema_name": "Cineworld Leicester Square",
+      "address": "Leicester Square",
+      "city": "London",
+      "county": "Greater London",
+      "postcode": "WC2H 7NA",
+      "lat": 51.51078,
+      "lng": -0.1305,
+      "distance": 0.031255415281335,
+      "logo_url": "https://d2z9fe5yu2p0av.cloudfront.net/chainlogos/uk/UK-868-sq.jpg"
+    },
+    {
+      "cinema_id": 8923,
+      "cinema_name": "Vue Cinemas - West End",
+      "address": "3 Cranbourn Street",
+      "city": "London",
+      "county": "Greater London",
+      "postcode": "WC2H 7AL",
+      "lat": 51.511181,
+      "lng": -0.12934,
+      "distance": 0.064288623403495,
+      "logo_url": "https://d2z9fe5yu2p0av.cloudfront.net/chainlogos/uk/UK-712-sq.jpg"
+    },
+    {
+      "cinema_id": 9545,
+      "cinema_name": "Prince Charles Cinema",
+      "address": "7 Leicester Place",
+      "city": "London",
+      "county": "Greater London",
+      "postcode": "WC2H 7BY",
+      "lat": 51.511421,
+      "lng": -0.13034,
+      "distance": 0.071755108431306,
+      "logo_url": "https://d2z9fe5yu2p0av.cloudfront.net/chainlogos/uk/UK-0-sq.jpg"
+    },
+    {
+      "cinema_id": 8797,
+      "cinema_name": "ODEON Panton Street",
+      "address": "11/18 Panton Street",
+      "city": "London",
+      "county": "Greater London",
+      "postcode": "SW1Y 4DP",
+      "lat": 51.509609,
+      "lng": -0.13136,
+      "distance": 0.075604237964265,
+      "logo_url": "https://d2z9fe5yu2p0av.cloudfront.net/chainlogos/uk/UK-614-sq.jpg"
+    }
+  ],
+    "status": {
+        "count": 5,
+        "state": "OK",
+        "method": "cinemasNearby",
+        "message": null,
+        "request_method": "GET",
+        "version": "MGv200",
+        "territory": "UK",
+        "device_datetime_sent": "2018-09-14T14:06:21.449Z",
+        "device_datetime_used": "2018-09-14 14:06:21"
+  }
+}

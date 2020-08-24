@@ -11,8 +11,10 @@ export default function ButtonCustom({onPressHandle,title}) {
       <Button 
       labelStyle={{fontSize:15,fontWeight:'bold',textAlign:'center'}} 
       mode='contained' 
-      style={{alignSelf:'center',marginTop:50,width:width/2,height:height/21,borderRadius:300,}} 
-      onPress={onPressHandle}>{title}</Button>
+      style={{alignSelf:'center',marginTop:30,width:width/2,height:height/21,borderRadius:300,}} 
+      onPress={onPressHandle}
+      color='red'
+      >{title}</Button>
     </View>
   )
 }   

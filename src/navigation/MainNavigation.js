@@ -18,7 +18,7 @@ import ProfileScreen from '../screens/ProfileScreen'
 import Ant from 'react-native-vector-icons/AntDesign'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import AddPlanScreen from '../screens/AddPlanScreen';
-
+import PickingMovieScreen from '../screens/PickingMovieScreen';
 
 
 const HomeStack = createStackNavigator();
@@ -103,9 +103,12 @@ const PlanStackNavigator = () => {
     <PlanStack.Navigator mode='modal'>
       <PlanStack.Screen options={{headerShown:false}} name='PlanHome' component={PlanScreen}/>
       <PlanStack.Screen options={{headerShown:false}} name='AddPlan' component={AddPlanScreen}/>
+      <PlanStack.Screen options={{headerShown:false}} name='Picking' component={PickingMovieScreen}/>
     </PlanStack.Navigator>
   )
-}
+} 
+
+
 
 
 const HomeStackNavigator = () => {

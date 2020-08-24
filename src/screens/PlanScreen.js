@@ -46,7 +46,6 @@ export default function  PlanScreen({navigation}) {
   const mockLoading = (item) => {
       const newItems = {};
       Object.keys(mock).forEach(key => {newItems[key] =mock[key];});
-      console.log(newItems)
       setItems(newItems)
   }
 
@@ -57,8 +56,11 @@ export default function  PlanScreen({navigation}) {
   return (
     <SafeAreaView>
     <ScrollView>
-    <Ant onPress={_handleAddPlan} style={{alignSelf:'flex-end',paddingHorizontal:10,paddingVertical:10}} 
-    name='pluscircleo' color='#34aeeb' size={30}/>
+    <Ant 
+    onPress={_handleAddPlan} 
+    style={{alignSelf:'flex-end',paddingHorizontal:10,paddingVertical:10}} 
+    name='pluscircleo' color='#34aeeb' size={30}
+    />
       <Agenda   
       items={items}
       loadItemsForMonth={mockLoading}

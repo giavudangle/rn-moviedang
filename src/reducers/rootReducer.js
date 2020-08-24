@@ -1,7 +1,10 @@
 import moviesReducer from './moviesReducer';
+import planReducer from './planReducer';
+
 
 import {combineReducers} from 'redux'
 
 export default combineReducers({
-  moviesReducer:moviesReducer
+  moviesReducer:moviesReducer,
+  planReducer:planReducer
 })

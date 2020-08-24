@@ -5,7 +5,8 @@ const initialState = {
   searchMovies:[],
   loading:false,
   refreshing:false,
-  error:''
+  error:'',
+ 
 }
 
 export default moviesReducer = (state = initialState,action) =>{
@@ -13,9 +14,9 @@ export default moviesReducer = (state = initialState,action) =>{
     case Types.FETCH_LIST_MOVIES_REQUEST:
       return {...state,loading:true,refreshing:false}
     case Types.FETCH_LIST_MOVIES_SUCCESS:
-
-
       return {...state,movies:action.payload,loading:false,refreshing:false}
+    case Types.FETCH_LIST_MOVIES_FAILURE:
+      return {...state,error:action.payload}
     case Types.FETCH_LIST_MOVIES_FAILURE:
       return {...state,error:action.payload}
     case Types.REFRESH_LIST_MOVIES:

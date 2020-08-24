@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
+import {useDispatch,useSelector} from 'react-redux'
 
 import {
   View,
@@ -9,17 +10,28 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { addMovieToPlan } from '../actions/planActions';
 
 const { width, height } = Dimensions.get('screen');
 
 
 
 
-export default MovieRender = ({ movie, navigation }) => {
+
+export default MoviePickerRendering = ({ movie, navigation }) => {
+
   const [color, setColor] = useState('gray');
+
+  const dispatch = useDispatch();
+
+  const _handleSendMovie = () => {
+    dispatch(addMovieToPlan(movie));
+    navigation.goBack();
+  }
+
   return (
     <TouchableWithoutFeedback
-      onPress={() => navigation.navigate('DetailMovie', movie)}
+      onPress={_handleSendMovie}
     >
       <View style={styles.container}>
         <View style={styles.imageContainer}>
