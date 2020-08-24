@@ -1,44 +1,43 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, SafeAreaView, StyleSheet, Button } from 'react-native'
-import { material } from 'react-native-typography'
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
 import TextInputCustom from '../components/common/TextInputCustom'
 import ButtonCustom from '../components/common/ButtonCustom';
 import DatePicker from '../components/DatePicker'
-
+import AsyncStorage from '@react-native-community/async-storage';
 import {useSelector} from 'react-redux'
 
 export default function AddPlanScreen({ navigation,route }) {
- 
-  
-
-
   const [plan, setPlan] = useState('');
   const [note, setNote] = useState('');
   const [date, setDate] = useState(new Date());
   const [movie, setMovie] = useState({});
-  const [theater, setTheater] = useState([]);
-  const [friend, setFriend] = useState();
+  const [theater, setTheater] = useState('');
+  const [friend, setFriend] = useState('');
   const [show, setShow] = useState(false);
 
   const e = useSelector(state => state.planReducer.pickingMovie)
-
-  const _handleCreatePlan = () => {
-    console.log('ok');
-  }
 
   const onChangeHandle = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setDate(currentDate);
   }
-  const _handlePickingMovie =  () => {
-    navigation.navigate('Picking')
-  }
-
-
+  
   useEffect(() => {
     setMovie(e);
   })
   
+  const _handleCreatePlan = async () => {
+    const result = {
+      plan:plan,
+      note:note,
+      date:date,
+      movie:movie,
+      theater:theater,
+      friend:friend
+    }
+    await AsyncStorage.setItem('plan',JSON.stringify(result));
+    navigation.goBack();
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -59,7 +58,7 @@ export default function AddPlanScreen({ navigation,route }) {
           name='calendar'
           place='Date & Time' />
         <TextInputCustom
-          onTouchHandle={ _handlePickingMovie}
+          onTouchHandle={() => navigation.navigate('Picking')}
           name='movie'
           valueRef={movie.title}
           place='Select Movie' />
@@ -79,11 +78,6 @@ export default function AddPlanScreen({ navigation,route }) {
     </SafeAreaView>
   )
 }
-
-
-
-
-
 
 const styles = StyleSheet.create({
   container: {

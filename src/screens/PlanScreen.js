@@ -56,6 +56,7 @@ export default function  PlanScreen({navigation}) {
   return (
     <SafeAreaView>
     <ScrollView>
+    <Text style={{color:'tomato',fontSize:30,fontWeight:'bold',alignSelf:'center',justifyContent:"center"}}>PLAN </Text>
     <Ant 
     onPress={_handleAddPlan} 
     style={{alignSelf:'flex-end',paddingHorizontal:10,paddingVertical:10}} 
