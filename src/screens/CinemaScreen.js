@@ -10,8 +10,10 @@ const { width, height } = Dimensions.get('screen');
 
 
 const TheaterDetail = ({ item,navigation }) => {
+  const lat = item.lat;
+  const lng = item.lng;
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('MapCinema')}>
+    <TouchableOpacity onPress={() => navigation.navigate('MapCinema',{coors:{lat,lng}})}>
       <View style={styles.container}>
         <View style={{flex:2}}>
           <Image style={{width:50,height:50,borderRadius:300}} source={{uri:item.logo_url}}/>
@@ -30,7 +32,7 @@ const TheaterDetail = ({ item,navigation }) => {
 export default function CinemaScreen({navigation}) {
   return (
  
-    <SafeAreaView style={{ backgroundColor: '#193561' ,opacity:0.9}}>
+    <SafeAreaView style={{flex:1, backgroundColor: '#193561' ,opacity:0.9}}>
       <Text style={{ fontSize: 30, fontWeight: "bold", alignSelf: "center", color: 'white' }}>THEATER</Text>
       <FlatList
         data={mockTheaterData.cinemas}
