@@ -1,11 +1,16 @@
 import React,{useState} from 'react'
-import { View, Text,SafeAreaView,Button } from 'react-native'
+import { View, Text,SafeAreaView, } from 'react-native'
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { Modal } from 'react-native-paper';
+import { Modal,Portal,Button } from 'react-native-paper';
 
 export default function DatePicker({onChangeHandle,date}) {
 
 
+  const [visible, setVisible] = React.useState(true);
+
+  const showModal = () => setVisible(true);
+
+  const  hideModal= () => setVisible(false);
 
 
 
@@ -14,23 +19,28 @@ export default function DatePicker({onChangeHandle,date}) {
 
 
   return (
-    <View style={{zIndex:99}}>
-    
-   
+    <Portal>
+    <Modal contentContainerStyle={{backgroundColor:'white'}} visible={visible} onDismiss={hideModal}>
+    <View style={{justifyContent:'space-between',flexDirection:'row',marginHorizontal:50,paddingTop:10}}>
+    <Button  mode='contained' onPress={hideModal}>close</Button>
+    <Button mode='contained' onPress={hideModal}>done</Button>
+    </View>
     <DateTimePicker
-    
     testID="dateTimePicker"
     value={date}
     mode='date'
     is24Hour={true}
     display="default"
     onChange={onChangeHandle}
-    
     />
+    </Modal>
+   
+  </Portal>
+   
+   
   
    
-    </View>
-      
+  
     
   );
 }

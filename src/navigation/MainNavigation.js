@@ -1,4 +1,6 @@
 import React from 'react';
+import Ant from 'react-native-vector-icons/AntDesign'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -8,22 +10,22 @@ import { NavigationContainer } from '@react-navigation/native'
 
 import MovieDetailScreen from '../screens/MovieDetailScreen'
 import HomeScreen from '../screens/HomeScreen'
-
 import SearchMovieScreen from '../screens/SearchMoviesScreen'
+
 import PlanScreen from '../screens/PlanScreen'
-import CinemaScreen from '../screens/CinemaScreen'
-import ProfileScreen from '../screens/ProfileScreen'
-
-
-import Ant from 'react-native-vector-icons/AntDesign'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import AddPlanScreen from '../screens/AddPlanScreen';
 import PickingMovieScreen from '../screens/PickingMovieScreen';
+
+import ProfileScreen from '../screens/ProfileScreen'
+
+import CinemaScreen from '../screens/CinemaScreen'
+import MapTheaterScreen from '../screens/MapTheaterScreen'
+
 
 
 const HomeStack = createStackNavigator();
 const PlanStack = createStackNavigator();
-
+const CinemaStack = createStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
@@ -70,7 +72,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name='Cinema'
-        component={CinemaScreen}
+        component={CinemaStackNavigator}
         options={{
           tabBarIcon: () => (
             <Icon style={{ paddingTop: 10 }} size={25} color='#2e2e2e' name='theater' />
@@ -87,14 +89,21 @@ const TabNavigator = () => {
           tabBarIcon: () => (
             <Ant style={{ paddingTop: 10 }} size={25} color='#2e2e2e' name='user' />
           ),
-     
           tabBarLabel: '',
-
         }}
       />
-      
+     
      
     </Tab.Navigator>
+  )
+}
+
+const CinemaStackNavigator = () => {
+  return (
+    <CinemaStack.Navigator mode='card'>
+      <CinemaStack.Screen options={{headerShown:false}} name='Cinema' component={CinemaScreen}/>
+      <CinemaStack.Screen options={{headerShown:false}} name='MapCinema' component={MapTheaterScreen}/>
+    </CinemaStack.Navigator>
   )
 }
 
@@ -107,9 +116,6 @@ const PlanStackNavigator = () => {
     </PlanStack.Navigator>
   )
 } 
-
-
-
 
 const HomeStackNavigator = () => {
   return (

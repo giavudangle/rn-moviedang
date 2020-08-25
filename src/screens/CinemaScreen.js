@@ -7,14 +7,11 @@ import MapTheaterScreen from './MapTheaterScreen'
 
 const { width, height } = Dimensions.get('screen');
  
-const _handlePressDetail = () => {
-
-}
 
 
-const TheaterDetail = ({ item }) => {
+const TheaterDetail = ({ item,navigation }) => {
   return (
-    <TouchableOpacity onPress={_handlePressDetail}>
+    <TouchableOpacity onPress={() => navigation.navigate('MapCinema')}>
       <View style={styles.container}>
         <View style={{flex:2}}>
           <Image style={{width:50,height:50,borderRadius:300}} source={{uri:item.logo_url}}/>
@@ -37,7 +34,7 @@ export default function CinemaScreen({navigation}) {
       <Text style={{ fontSize: 30, fontWeight: "bold", alignSelf: "center", color: 'white' }}>THEATER</Text>
       <FlatList
         data={mockTheaterData.cinemas}
-        renderItem={({ item }) => <TheaterDetail item={item} />}
+        renderItem={({ item }) => <TheaterDetail navigation={navigation} item={item} />}
         style={{alignSelf:'center'}}
       /> 
     

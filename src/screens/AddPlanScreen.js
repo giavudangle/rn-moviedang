@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet ,Keyboard,TouchableWithoutFeedback} from 'react-native'
 import TextInputCustom from '../components/common/TextInputCustom'
 import ButtonCustom from '../components/common/ButtonCustom';
 import DatePicker from '../components/DatePicker'
@@ -51,12 +51,15 @@ export default function AddPlanScreen({ navigation,route }) {
           onChangeTextHandle={(text) => setNote(text)}
           name='notebook-outline'
           place='Note' />
-        <TextInputCustom
+         
+          <TextInputCustom 
           onTouchHandle={() => setShow(true)}
           onTouchEndHandle={() => setShow(false)}
           valueRef={date.toDateString()}
           name='calendar'
           place='Date & Time' />
+        
+        
         <TextInputCustom
           onTouchHandle={() => navigation.navigate('Picking')}
           name='movie'
