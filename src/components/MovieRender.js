@@ -9,7 +9,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import {detailMovieConfig} from '../config/rootConfig'
 const { width, height } = Dimensions.get('screen');
 
 
@@ -19,11 +19,12 @@ export default MovieRender = ({ movie, navigation }) => {
   const [color, setColor] = useState('gray');
   return (
     <TouchableWithoutFeedback
+    
       onPress={() => navigation.navigate('DetailMovie', movie)}
     >
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          <Image style={styles.poster} source={{ uri: `https://image.tmdb.org/t/p/original` + `${movie.poster_path}` }} />
+          <Image style={styles.poster} source={{ uri: detailMovieConfig.CDN_URL + `${movie.poster_path}` }} />
         </View>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{movie.title}</Text>
@@ -48,7 +49,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingLeft: 5,
-    paddingHorizontal: 30
+    paddingHorizontal: 30,
+    borderBottomColor:'black',
+    borderBottomWidth:0.2,
+    padding:10,
+    opacity:0.95
 
   },
   imageContainer: {

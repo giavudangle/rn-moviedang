@@ -27,7 +27,7 @@ export default function SearchMoviesScreen({navigation}) {
     return <Loading/>
   }
 
-  if(loading) return <Loading/>
+  //if(loading) return <Loading/>
 
 
   return (

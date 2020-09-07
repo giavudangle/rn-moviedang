@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, Text,SafeAreaView ,Image} from 'react-native'
-import { FlatList } from 'react-native-gesture-handler'
-import { Button } from 'react-native-paper'
+import { FlatList, TouchableOpacity } from 'react-native-gesture-handler'
 import Ant from 'react-native-vector-icons/AntDesign'
 import ButtonCustom from '../components/common/ButtonCustom'
 
@@ -19,16 +18,28 @@ const UserDetail = (custom) => {
 
 const mockData = [
   {
-  icon:'customerservice',
-  feature:'Test1'
+    icon:'customerservice',
+    feature:'Favorites'
+  },
+  {
+  icon:'unlock',
+  feature:'Remove Ads'
   },
   {
     icon:'customerservice',
-    feature:'Test1'
+    feature:'Restore Purchase'
   },
   {
-    icon:'customerservice',
-    feature:'Test1'
+    icon:'star',
+    feature:'Rate this app'
+  },
+  {
+    icon:'tag',
+    feature:'Feedback'
+  },
+  {
+    icon:'sharealt',
+    feature:'Share this app'
   }
 ]
  
@@ -37,17 +48,20 @@ const mockData = [
 
 const FeatureRenderItem = ({item}) => {
   return(
-    <View style={{padding:20,backgroundColor:'#c7c5bf',flexDirection:'row',paddingHorizontal:4,borderColor:'gray',borderWidth:0.2,}}>
-      <Ant style={{paddingHorizontal:20}} name={`${item.icon}`} size={30} color='black'/>
-      <Text style={{fontSize:20,fontWeight:'bold',alignSelf:'center'}}>{item.feature}</Text>
+    <TouchableOpacity onPress={() => {}}>
+    <View style={{padding:20,flexDirection:'row',paddingHorizontal:4,borderColor:'gray',borderWidth:0.2,}}>
+      <Ant style={{paddingHorizontal:30}} name={`${item.icon}`} size={30} color='black'/>
+      <Text style={{fontSize:20,fontWeight:'400',alignSelf:'center',paddingLeft:10}}>{item.feature}</Text>
     </View>
+    </TouchableOpacity>
+
   )
 }
 
 
 export default function ProfileScreen() {
   return (
-    <SafeAreaView style={{backgroundColor:'#c7c5bf',flex:1}}>
+    <SafeAreaView style={{backgroundColor:'white',flex:1}}>
     
       <UserDetail  />
       <View style={{flex:8,marginTop:30}}>

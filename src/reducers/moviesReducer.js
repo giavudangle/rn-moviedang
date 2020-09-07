@@ -12,9 +12,9 @@ const initialState = {
 export default moviesReducer = (state = initialState,action) =>{
   switch(action.type){
     case Types.FETCH_LIST_MOVIES_REQUEST:
-      return {...state,loading:true,refreshing:false}
+      return {...state,loading:true,refreshing:true}
     case Types.FETCH_LIST_MOVIES_SUCCESS:
-      return {...state,movies:action.payload,loading:false,refreshing:false}
+      return {...state,movies:state.movies.concat(action.payload),loading:false,refreshing:false}
     case Types.FETCH_LIST_MOVIES_FAILURE:
       return {...state,error:action.payload}
     case Types.FETCH_LIST_MOVIES_FAILURE:

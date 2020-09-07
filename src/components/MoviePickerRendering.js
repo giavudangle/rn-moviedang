@@ -11,12 +11,9 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { addMovieToPlan } from '../actions/planActions';
+import {detailMovieConfig} from '../config/rootConfig'
 
 const { width, height } = Dimensions.get('screen');
-
-
-
-
 
 export default MoviePickerRendering = ({ movie, navigation }) => {
 
@@ -35,7 +32,7 @@ export default MoviePickerRendering = ({ movie, navigation }) => {
     >
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          <Image style={styles.poster} source={{ uri: `https://image.tmdb.org/t/p/original` + `${movie.poster_path}` }} />
+          <Image style={styles.poster} source={{ uri: detailMovieConfig.CDN_URL + `${movie.poster_path}` }} />
         </View>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{movie.title}</Text>

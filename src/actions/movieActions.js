@@ -1,27 +1,21 @@
 /* Get API List Movies */
+
 import Types from './actionTypes';
+import movieAPI from '../api/movieAPI';
+import {apiConfig} from '../config/rootConfig'
 
 export const fetchList = (page) => {
-  const urlString =`https://api.themoviedb.org/3/movie/now_playing?api_key=69938bebfb176098af2131f041f0f817&language=en-US&page=${page}`;
-  return (dispatch) => {
+  return async dispatch => {
     dispatch({type:Types.FETCH_LIST_MOVIES_REQUEST})
-      return(
-        fetch(urlString)
-        .then(res => res.json())
-        .then(json => {
-          return json.results
-        })
-        .then((data) => dispatch({type:Types.FETCH_LIST_MOVIES_SUCCESS,payload:data}))
-        .catch((err) => err.message)
-      ) 
+    try {
+      const resultData = await
+      movieAPI
+      .get(`/movie/now_playing?api_key=${apiConfig.API_KEY}&language=${apiConfig.LANG}&page=${page}`)
+      dispatch({type:Types.FETCH_LIST_MOVIES_SUCCESS,payload:resultData.data.results})
     }
-}
-
-
-export const refreshListMovie = () => {
-  return (dispatch) => {
-    dispatch({type:Types.REFRESH_LIST_MOVIES})
-    return fetchList(1)
+    catch(e){
+      console.log(e);
+    }
   }
 }
 
@@ -38,4 +32,8 @@ export const searchMovieWithName = (query) => {
   }
 }
 
+
+export const refreshControl = () => {
+  fetchList(1);
+}
 
