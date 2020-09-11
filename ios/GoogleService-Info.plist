@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>984502714631-khpep7acgdo2bkg9kvbtu20soivgml9b.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.984502714631-khpep7acgdo2bkg9kvbtu20soivgml9b</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAHAppCZ3OqiLKTmNb68AeEreSl4wOi4nw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>984502714631</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.name.MovieRedux</string>
+	<key>PROJECT_ID</key>
+	<string>moviedang-391c2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>moviedang-391c2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:984502714631:ios:93eae57e0d16d5d24ec5a2</string>
+	<key>DATABASE_URL</key>
+	<string>https://moviedang-391c2.firebaseio.com</string>
+</dict>
+</plist>
