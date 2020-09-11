@@ -1,36 +1,34 @@
-import React, { Component } from 'react'
-import { Text, View ,SafeAreaView,Button} from 'react-native'
+import React, { useState, useEffect } from 'react';
+import { View, Text } from 'react-native';
+import auth from '@react-native-firebase/auth';
 
-export default class Playground extends Component {
+export default function Playground() {
+ 
 
-  constructor(props){
-    super(props);
-    this.state ={
-      page:1
-    }
-  }
+  useEffect(() => {
+    const subscriber = auth()
+    .createUserWithEmailAndPassword('jane.doe@example.com', 'SuperSecretPassword!')
+    .then(() => {
+      console.log('User account created & signed in!');
+    })
+    .catch(error => {
+      if (error.code === 'auth/email-already-in-use') {
+        console.log('That email address is already in use!');
+      }
 
-   _handleCounterUp = () => {
-    this.setState({page: this.state.page + 1})
-  }
-  
+      if (error.code === 'auth/invalid-email') {
+        console.log('That email address is invalid!');
+      }
 
-   _handleCounterDown = () => {
-    this.setState({page:  this.state.page - 1})
-  }
+      console.error(error);
+    });
+    return subscriber; // unsubscribe on unmount
+  }, []);
 
-  
-  render() {
-    const {page} = this.state;
-    return (
-      <SafeAreaView>
-        
-        <Button title='Up' onPress={this._handleCounterUp}/>
-        <Button title='Down' onPress={this._handleCounterDown}/>
-        <Text>{page}</Text>
-        
-
-      </SafeAreaView>
-    )
-  }
+ 
+  return (
+    <View>
+      
+    </View>
+  );
 }

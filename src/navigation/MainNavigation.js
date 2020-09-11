@@ -2,8 +2,9 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native'
 import RootTabNavigator from './RootTabNavigator';
 
+import AuthStackNavigator from './AuthStack';
 
-
+const flag = true;
 
 
 
@@ -13,7 +14,7 @@ import RootTabNavigator from './RootTabNavigator';
 const MainNavigation = () => {
   return (
     <NavigationContainer>
-      <RootTabNavigator />
+    {flag ? <AuthStackNavigator/> : <RootTabNavigator/>}
     </NavigationContainer>
   );
 }
