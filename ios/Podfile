@@ -46,6 +46,9 @@ def flipper_post_install(installer)
 end
 
 target 'MovieRedux' do
+
+
+  
   # Pods for MovieRedux
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"

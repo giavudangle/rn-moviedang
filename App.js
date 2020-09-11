@@ -6,7 +6,10 @@ import MainNavigation from './src/navigation/MainNavigation';
 import {Provider as PaperProvider} from 'react-native-paper'
 
 
+
 export default () => { 
+  console.disableYellowBox = true;
+
   return(
     <Provider store={store}>
       <PaperProvider>

@@ -18,7 +18,7 @@
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
 
-
+@import UIKit;
 
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
@@ -31,6 +31,8 @@ static void InitializeFlipper(UIApplication *application) {
 }
 #endif
 
+
+
 @interface AppDelegate () <RCTBridgeDelegate>
 
 @property (nonatomic, strong) UMModuleRegistryAdapter *moduleRegistryAdapter;
@@ -42,9 +44,14 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+  
 #if DEBUG
   InitializeFlipper(application);
+
+
 #endif
+  
   
   self.moduleRegistryAdapter = [[UMModuleRegistryAdapter alloc] initWithModuleRegistryProvider:[[UMModuleRegistryProvider alloc] init]];
   self.launchOptions = launchOptions;
@@ -97,5 +104,7 @@ static void InitializeFlipper(UIApplication *application) {
   EXSplashScreenService *splashScreenService = (EXSplashScreenService *)[UMModuleRegistryProvider getSingletonModuleForClass:[EXSplashScreenService class]];
   [splashScreenService showSplashScreenFor:self.window.rootViewController];
 }
-
+  
+  
+  
 @end
