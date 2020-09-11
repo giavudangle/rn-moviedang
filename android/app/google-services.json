@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "984502714631",
+    "firebase_url": "https://moviedang-391c2.firebaseio.com",
+    "project_id": "moviedang-391c2",
+    "storage_bucket": "moviedang-391c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984502714631:android:8d36cdc3b3db3c2a4ec5a2",
+        "android_client_info": {
+          "package_name": "com.movieredux"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "984502714631-39rokss5eujeblri835kbj06sb24kal3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi34trrHmuI4MiB0JZCIOAg96qh6xWf7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "984502714631-39rokss5eujeblri835kbj06sb24kal3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "984502714631-khpep7acgdo2bkg9kvbtu20soivgml9b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.name.MovieRedux"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
