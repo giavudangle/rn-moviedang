@@ -2,16 +2,27 @@ import React, { useState } from 'react'
 import { View, Text,SafeAreaView,Dimensions,StyleSheet,Image ,ScrollView} from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {Button, TextInput} from 'react-native-paper';
-import Ant from 'react-native-vector-icons/AntDesign'
-const {width,height} = Dimensions.get('screen');
+import Ant from 'react-native-vector-icons/AntDesign';
+import {useDispatch,useSelector} from 'react-redux'
+import {registerWithEmailPassword} from '../actions/authActions'
+import Loading from '../components/common/Loading'
 
+const {width,height} = Dimensions.get('screen');
 
 export default function RegisterScreen(props) {
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
 
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.authReducer)
 
-console.log(props)
+  const _handleLogin = async () => {
+    dispatch(registerWithEmailPassword(email,password))
+  }
+  
+
+  if(state.loading) return <Loading/> 
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.logoContainer}>
@@ -55,8 +66,10 @@ console.log(props)
         mode='contained'
         color='#0095ff'
         style={styles.button}
-        onPress={() => {}}
+        onPress={_handleLogin}
         >Register</Button>
+        {state.error ? <Text  style={{paddingTop:15,fontSize:13,textAlign:'center',color:'white'}} >{state.error}</Text> : null}
+
         <TouchableOpacity onPress={() => props.navigation.goBack()}>
         <Text style={styles.text}>Already have account ?</Text>
 

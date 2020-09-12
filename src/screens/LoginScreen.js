@@ -3,15 +3,29 @@ import { View, Text,SafeAreaView,Dimensions,StyleSheet,Image ,ScrollView} from '
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {Button, TextInput} from 'react-native-paper';
 import Ant from 'react-native-vector-icons/AntDesign'
+import {useSelector,useDispatch} from 'react-redux'
+import {loginWithEmailPassword} from '../actions/authActions'
+import Loading from '../components/common/Loading'
+import { useIsFocused } from '@react-navigation/native';
+
+
 const {width,height} = Dimensions.get('screen');
-
-
 export default function LoginScreen(props) {
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
+  
+
+  const state = useSelector(state => state.authReducer)
+  const dispatch = useDispatch();
+
+ 
+  const _handleLogin = async () => {
+    dispatch(loginWithEmailPassword(email,password))
+  }
 
 
-console.log(props)
+
+  if(state.loading) return <Loading/> 
   return (
     <ScrollView style={styles.container}>
       <View style={styles.logoContainer}>
@@ -33,6 +47,7 @@ console.log(props)
             onChangeText={(text) => setEmail(text)}
             />
         </View>
+      
         <View style={styles.inputContainer}>
           <Ant style={{top:10,paddingLeft:10}} color='white' name='eye' size={30}/>    
             <TextInput
@@ -50,16 +65,17 @@ console.log(props)
         </View>
       
       </View>
+      
       <View style={styles.buttonContainer}>
         <Button 
         mode='contained'
         color='#0095ff'
         style={styles.button}
-        onPress={() => {}}
+        onPress={_handleLogin}
         >LOGIN</Button>
+        {state.error ? <Text  style={{paddingTop:15,fontSize:13,textAlign:'center',color:'white'}} >{state.error}</Text> : null}
         <TouchableOpacity onPress={() => props.navigation.navigate('Register')}>
-        <Text style={styles.text}>Dont have account ?</Text>
-
+          <Text style={styles.text}>Dont have account ?</Text>
         </TouchableOpacity>
       </View>
       </ScrollView>
