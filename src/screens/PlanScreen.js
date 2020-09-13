@@ -1,75 +1,85 @@
-import React,{useState} from 'react'
-import { View, Text ,ScrollView,TouchableOpacity} from 'react-native'
-import {Calendar,CalendarList,Agenda} from 'react-native-calendars'
+import React,{useEffect, useState} from 'react'
+import { View, Text ,ScrollView,TouchableOpacity,FlatList,Image} from 'react-native'
+import {Calendar,} from 'react-native-calendars'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { material } from 'react-native-typography'
-import { Avatar, Card } from 'react-native-paper'
 import Ant from 'react-native-vector-icons/AntDesign';
 
+import {detailMovieConfig} from '../config/rootConfig';
+
+import {getListPlan} from '../actions/planActions';
+
+import {useSelector,useDispatch} from 'react-redux';
+
+
+const currentDate = new Date().toISOString().slice(0,10)
 
 export default function  PlanScreen({navigation}) {
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.planReducer );
 
-  const [items,setItems] = useState({})
+  console.log(state);
+  useEffect(() => {
+    dispatch(getListPlan());
+  },[])
 
-  const randomName = () => {
-    var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    var charactersLength = characters.length;
-    for ( var i = 0; i < charactersLength; i++ ) {
-       result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result[0];  
-  }
-
-  const renderItem = (item) => {
+  const PlanItem = ({item}) => {
     return(
-      <TouchableOpacity>
-        <Card>
-          <Card.Content>
-            <View style={{justifyContent:'space-between',alignItems:'center',flexDirection:'row'}}>
-              <Text style={[material.subheading]} >{item.name}</Text>
-              <Avatar.Text label={randomName()}/>
-            </View>
-          </Card.Content>
-        </Card>
-      </TouchableOpacity>
+      <View 
+      style={{backgroundColor:'#0095ff',opacity:0.95,alignItems:'center'
+      ,flexDirection:'row',paddingVertical:4,borderBottomWidth:1,
+      borderBottomColor:'white'}}>
+        <View>
+          <Image 
+          resizeMode='contain'
+          style={{width:120,height:120}} 
+          source={{uri:detailMovieConfig.CDN_URL + item.movie.poster_path}}/>
+        </View>     
+        <View style={{justifyContent:'flex-start',paddingHorizontal:30}}>
+          <Text style={{fontSize:24,fontWeight:'bold',color:'white',textTransform:'uppercase',padding:4}}>{item.plan}</Text>
+          <Text style={{fontSize:20,color:'#ff0000',fontWeight:'bold',padding:4}}>{item.movie.title}</Text>
+          <Text style={{fontSize:18,color:'white',fontWeight:'500',padding:4}}>Theater : {item.theater}</Text>
+          <Text style={{fontSize:16,color:'white',fontWeight:'500',padding:4}}>Friends : {item.friend}</Text>
+          <Text style={{fontSize:22,color:'white',fontWeight:'bold',padding:4}}>Date: {item.date}</Text>
+        </View>
+      </View>
     )
-  }
-
-  const mock ={
-    '2020-08-18': [{name: 'item 1 - any js object',height:0}],
-    '2020-08-17': [{name: 'item 2 - any js object', height: 80}],
-    '2020-08-21': [{name: 'item 2 - any js object', height: 80}],
-    '2020-08-22': [{name: 'item 3 - any js object'}, {name: 'any js object'},{name: 'any js object'}]
-  }
- 
-  const mockLoading = (item) => {
-      const newItems = {};
-      Object.keys(mock).forEach(key => {newItems[key] =mock[key];});
-      setItems(newItems)
-  }
-
-  const _handleAddPlan = () =>{
-    navigation.navigate('AddPlan')
   }
 
   return (
     <SafeAreaView>
-    <ScrollView>
-    <Text style={{color:'tomato',fontSize:30,fontWeight:'bold',alignSelf:'center',justifyContent:"center"}}>PLAN </Text>
-    <Ant 
-    onPress={_handleAddPlan} 
-    style={{alignSelf:'flex-end',paddingHorizontal:10,paddingVertical:10}} 
-    name='pluscircleo' color='#34aeeb' size={30}
-    />
-      <Agenda   
-      items={items}
-      loadItemsForMonth={mockLoading}
-      selected={'2020-08-22'}      
-      renderItem={renderItem}
-      />
-   
-    </ScrollView>
+      <ScrollView>
+      <View style={{justifyContent:'space-between',flexDirection:'row',alignItems:'center',paddingBottom:10}}>
+        <Text style={{left:120,fontSize:30,color:'#0095ff',fontWeight:'900'}}>LIST PLAN</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('AddPlan')}>
+        <Ant 
+        style={{paddingRight:20,paddingBottom:10,top:8}}
+        name='pluscircleo' color='#0095ff' size={28}
+        />
+        </TouchableOpacity>
+      </View>
+      <View>
+        <Calendar 
+          current={currentDate}
+          markedDates={{
+            currentDate:{
+              marked:true,
+              selected:true,
+              selectedColor:'blue'
+            }
+          }}
+        onDayPress={(date) => console.log(date)}
+        />
+      </View>
+      <View>
+        <FlatList
+        style={{marginTop:10}}
+        data={state.listPlan}
+        renderItem={({item}) => <PlanItem item={item}/>}
+        />
+      </View>
+    
+
+      </ScrollView>
     </SafeAreaView>
   )
 }

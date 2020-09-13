@@ -1,4 +1,5 @@
 import Types from './actionTypes';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 export const addMovieToPlan = (movie) => {
@@ -8,4 +9,18 @@ export const addMovieToPlan = (movie) => {
       payload:movie
     })
   }
+}
+
+export const getListPlan = () => {
+  return async dispatch => {
+    const requestData = await AsyncStorage.getItem('listPlan');
+    const data = JSON.parse(requestData);
+    console.log(data);
+    dispatch({
+      type:Types.GET_LIST_PLANS,
+      payload:data
+    })
+  }
+  
+  
 }

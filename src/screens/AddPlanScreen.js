@@ -19,6 +19,7 @@ export default function AddPlanScreen({ navigation,route }) {
 
   const onChangeHandle = (event, selectedDate) => {
     const currentDate = selectedDate || date;
+    console.log(currentDate)
     setDate(currentDate);
   }
   
@@ -30,13 +31,28 @@ export default function AddPlanScreen({ navigation,route }) {
     const result = {
       plan:plan,
       note:note,
-      date:date,
+      date:date.toISOString().slice(0,10),
       movie:movie,
       theater:theater,
       friend:friend
     }
-    await AsyncStorage.setItem('plan',JSON.stringify(result));
-    navigation.goBack();
+
+    const existData = await AsyncStorage.getItem('listPlan');
+    let newData = JSON.parse(existData)
+    if(!newData){
+      newData = []
+    }
+    newData.push(result)
+
+    await AsyncStorage.setItem('listPlan',JSON.stringify(newData))
+    .then(() => {
+      console.log('Saved success');
+      navigation.goBack();
+    })
+    .catch(() => {
+      console.log('error saved');
+    })
+
   }
 
   return (
