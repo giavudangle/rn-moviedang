@@ -13,6 +13,10 @@ export default planReducer = (state = initialState,action) => {
       return {...state,listPlan:action.payload}
     case Types.ADD_MOVIE_PLAN_SUCCESS:
       return {...state,pickingMovie:action.payload}
+    case Types.ADD_NEW_PLAN:
+      return {...state,listPlan:action.payload}
+    case Types.DELETE_ALL_PLANS:
+      return {...state,listPlan:[]}
     default:
       return state;
   } 

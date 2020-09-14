@@ -6,7 +6,7 @@ import Ant from 'react-native-vector-icons/AntDesign';
 
 import {detailMovieConfig} from '../config/rootConfig';
 
-import {getListPlan} from '../actions/planActions';
+import {getListPlans,deleteAllPlans} from '../actions/planActions';
 
 import {useSelector,useDispatch} from 'react-redux';
 
@@ -17,9 +17,17 @@ export default function  PlanScreen({navigation}) {
   const dispatch = useDispatch();
   const state = useSelector(state => state.planReducer );
 
-  console.log(state);
+  function clearAllData() {
+   
+  }
+ 
+
+  const _deleteAllPlans =  () => {
+    dispatch(deleteAllPlans());
+  }
   useEffect(() => {
-    dispatch(getListPlan());
+    dispatch(getListPlans());
+    clearAllData()
   },[])
 
   const PlanItem = ({item}) => {
@@ -49,7 +57,14 @@ export default function  PlanScreen({navigation}) {
     <SafeAreaView>
       <ScrollView>
       <View style={{justifyContent:'space-between',flexDirection:'row',alignItems:'center',paddingBottom:10}}>
-        <Text style={{left:120,fontSize:30,color:'#0095ff',fontWeight:'900'}}>LIST PLAN</Text>
+      <TouchableOpacity onPress={_deleteAllPlans}>
+        <Ant 
+        style={{paddingLeft:20,paddingBottom:10,top:8}}
+        name='delete' color='#0095ff' size={28}
+        />
+        </TouchableOpacity>
+
+        <Text style={{left:0,fontSize:30,color:'#0095ff',fontWeight:'900'}}>LIST PLAN</Text>
         <TouchableOpacity onPress={() => navigation.navigate('AddPlan')}>
         <Ant 
         style={{paddingRight:20,paddingBottom:10,top:8}}

@@ -4,7 +4,9 @@ import TextInputCustom from '../components/common/TextInputCustom'
 import ButtonCustom from '../components/common/ButtonCustom';
 import DatePicker from '../components/DatePicker'
 import AsyncStorage from '@react-native-community/async-storage';
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
+
+import {addPlan} from '../actions/planActions'
 
 export default function AddPlanScreen({ navigation,route }) {
   const [plan, setPlan] = useState('');
@@ -15,7 +17,9 @@ export default function AddPlanScreen({ navigation,route }) {
   const [friend, setFriend] = useState('');
   const [show, setShow] = useState(false);
 
-  const e = useSelector(state => state.planReducer.pickingMovie)
+  const pickedMovie = useSelector(state => state.planReducer.pickingMovie)
+  const dispatch = useDispatch();
+
 
   const onChangeHandle = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -24,10 +28,13 @@ export default function AddPlanScreen({ navigation,route }) {
   }
   
   useEffect(() => {
-    setMovie(e);
+    setMovie(pickedMovie);
   })
   
-  const _handleCreatePlan = async () => {
+
+
+  const temp = () => {
+    console.log('vao temp')
     const result = {
       plan:plan,
       note:note,
@@ -36,23 +43,8 @@ export default function AddPlanScreen({ navigation,route }) {
       theater:theater,
       friend:friend
     }
-
-    const existData = await AsyncStorage.getItem('listPlan');
-    let newData = JSON.parse(existData)
-    if(!newData){
-      newData = []
-    }
-    newData.push(result)
-
-    await AsyncStorage.setItem('listPlan',JSON.stringify(newData))
-    .then(() => {
-      console.log('Saved success');
-      navigation.goBack();
-    })
-    .catch(() => {
-      console.log('error saved');
-    })
-
+    dispatch(addPlan(result))
+    navigation.goBack();
   }
 
   return (
@@ -67,15 +59,12 @@ export default function AddPlanScreen({ navigation,route }) {
           onChangeTextHandle={(text) => setNote(text)}
           name='notebook-outline'
           place='Note' />
-         
           <TextInputCustom 
           onTouchHandle={() => setShow(true)}
           onTouchEndHandle={() => setShow(false)}
           valueRef={date.toDateString()}
           name='calendar'
           place='Date & Time' />
-        
-        
         <TextInputCustom
           onTouchHandle={() => navigation.navigate('Picking')}
           name='movie'
@@ -89,7 +78,8 @@ export default function AddPlanScreen({ navigation,route }) {
           onChangeTextHandle={(text) => setFriend(text)}
           name='account-plus'
           place='Select Friend' />
-        <ButtonCustom onPressHandle={_handleCreatePlan} title='Create' />
+        <ButtonCustom onPressHandle={temp} title='Create' />
+
       </View>
       <View style={styles.stuffContainer}>
         {show ? <DatePicker date={date} onChangeHandle={onChangeHandle} /> : null}
