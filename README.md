@@ -4,7 +4,7 @@
     <a href="https://github.com/giavudangle/movies-redux-example"><img style='margin-bottom:30' src="https://i.ibb.co/DfdnQ6P/moviedang.png" alt="moviedang" border="0"></a>
   </div>
   <div>
-    <p align="right">
+    <p align="right|center">
   <a href="https://github.com/facebook/react-native/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="React Native is released under the MIT license." />
   </a>
