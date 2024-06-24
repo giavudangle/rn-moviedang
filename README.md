@@ -1,7 +1,8 @@
 # MOVIEDANG 
+
 <div style='display:flex;justify-content:space-between;align-items:center;flex-direction:column'>
   <div>
-    <a href="https://github.com/giavudangle/movies-redux-example"><img style='margin-bottom:30' src="https://i.ibb.co/DfdnQ6P/moviedang.png" alt="moviedang" border="0"></a>
+    <a href="https://github.com/giavudangle/movies-redux-example"><img style='margin-bottom:30' src="https://i.ibb.co/DfdnQ6P/moviedang.png" alt="moviedang" border="0"></a>a>
   </div>
   <div>
     <p align="right|center">
